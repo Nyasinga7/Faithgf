@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faith Valentine</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: sans-serif;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #yes-btn {
+      background-color: green;
+      color: white;
+      padding: 10px 20px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      margin-right: 10px;
+      cursor: pointer;
+      transition: font-size 0.3s ease;
+    }
+
+    #no-btn {
+      background-color: red;
+      color: white;
+      padding: 10px 20px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      position: absolute;
+      transition: top 0.5s ease, left 0.5s ease;
+      cursor: pointer;
+    }
+
+    img {
+      height: 200px;
+    }
+
+    h1 {
+      margin: 20px 0;
+      font-size: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <img src="https://gifdb.com/images/high/cute-love-bear-roses-ou7zho5oosxnpo6k.gif" alt="Cute bear with roses">
+  <h1 id="question">Faith, will you be my girlfriend?</h1>
+
+  <div>
+    <button id="yes-btn">Yes</button>
+    <button id="no-btn">No</button>
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById("yes-btn");
+    const noBtn = document.getElementById("no-btn");
+    let noCount = 0;
+
+    const noPhrases = [
+      "No",
+      "Are you sure?",
+      "Really sure?",
+      "Think again!",
+      "Last chance!",
+      "Surely not?",
+      "You might regret this!",
+      "Give it another thought!",
+      "Are you absolutely certain?",
+      "This could be a mistake!",
+      "Have a heart!",
+      "Don't be so cold!",
+      "Change of heart?",
+      "Wouldn't you reconsider?",
+      "Is that your final answer?",
+      "You're breaking my heart ;("
+    ];
+
+    yesBtn.addEventListener("click", () => {
+      document.body.innerHTML = `
+        <img src="https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif" alt="Cute bears kissing">
+        <div style="font-size:2rem; font-weight:bold; margin-top:20px;">
+          To the girl from 4th Street, Faith, said Yes 💖
+        </div>
+      `;
+    });
+
+    noBtn.addEventListener("click", () => {
+      noCount++;
+      noBtn.textContent = noPhrases[Math.min(noCount, noPhrases.length - 1)];
+
+      // Move No button to random position
+      const top = Math.random() * 70;
+      const left = Math.random() * 70;
+      noBtn.style.top = top + "vh";
+      noBtn.style.left = left + "vw";
+
+      // Increase Yes button size
+      yesBtn.style.fontSize = (16 + noCount * 4) + "px";
+    });
+  </script>
+</body>
+</html>
